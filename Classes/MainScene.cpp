@@ -21,7 +21,7 @@ bool MainScene::init()
 	}
 
 	keep_motion = false;
-	increase_speed = true;
+	increase_speed = false;
 	finish = false;
 	counter = 0;
 	start_time = 9;
@@ -34,7 +34,7 @@ bool MainScene::init()
 	
 	overdrive = 0;
 
-	label = Label::createWithSystemFont("0", "Arial", 96);
+	label = Label::createWithSystemFont("N", "Arial", 96);
 	label->setAnchorPoint(cocos2d::Vec2(0.0, 0.0));
 	label->setTextColor(Color4B::BLACK);
 	this->addChild(label, 1);
@@ -73,7 +73,7 @@ bool MainScene::init()
 		}
 
 		if (keyCode == EventKeyboard::KeyCode::KEY_E){
-			if (overdrive<4) label->setString(std::to_string(++overdrive));
+			if (!increase_speed && overdrive<4) label->setString(std::to_string(++overdrive));
 			if (start_time > 0){
 				time_label->setString("EARLY");
 				early = true;
